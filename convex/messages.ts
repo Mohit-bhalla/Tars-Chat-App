@@ -119,3 +119,22 @@ export const getTypingUsers = query({
     return withNames;
   },
 });
+
+
+// Soft delete a message (keeps record, just marks it deleted)
+export const deleteMessage = mutation({
+  args: {
+    messageId: v.id("messages"),
+    senderId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const message = await ctx.db.get(args.messageId);
+
+    // Make sure only the sender can delete their own message
+    if (!message || message.senderId !== args.senderId) {
+      throw new Error("Not authorized to delete this message");
+    }
+
+    await ctx.db.patch(args.messageId, { isDeleted: true });
+  },
+});
