@@ -156,7 +156,7 @@ function ConversationItem({ convo, currentUserId, isSelected, onClick }: any) {
       className={`w-full flex items-center gap-3 px-4 py-3 transition-colors border-b border-slate-50
         ${isSelected ? "bg-slate-100" : "hover:bg-slate-50"}`}
     >
-      <div className="relative flex-shrink-0">
+      <div className="relative shrink-0">
         <Avatar className="h-11 w-11">
           <AvatarImage src={otherUser?.imageUrl} />
           <AvatarFallback>{otherUser?.name?.[0] ?? "?"}</AvatarFallback>
@@ -171,7 +171,7 @@ function ConversationItem({ convo, currentUserId, isSelected, onClick }: any) {
           <p className="font-medium text-slate-800 text-sm truncate">
             {otherUser?.name ?? "Unknown"}
           </p>
-          <span className="text-xs text-slate-400 flex-shrink-0 ml-2">
+          <span className="text-xs text-slate-400 shrink-0 ml-2">
             {formatTimestamp(convo.lastMessageTime)}
           </span>
         </div>
@@ -180,7 +180,7 @@ function ConversationItem({ convo, currentUserId, isSelected, onClick }: any) {
             {convo.lastMessagePreview ?? "Start a conversation"}
           </p>
           {unreadCount ? (
-            <Badge className="ml-2 h-5 min-w-5 flex items-center justify-center bg-blue-500 text-white text-xs rounded-full flex-shrink-0">
+            <Badge className="ml-2 h-5 min-w-5 flex items-center justify-center bg-blue-500 text-white text-xs rounded-full shrink-0">
               {unreadCount > 99 ? "99+" : unreadCount}
             </Badge>
           ) : null}
